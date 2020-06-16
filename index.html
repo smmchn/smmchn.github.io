@@ -88,7 +88,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">##1.合理使用NSDateFormatter 和 NSCalendar</span><br></pre></td></tr></table></figure>
+        <p>##合理使用NSDateFormatter 和 NSCalendar</p>
 <p>这种高开销对象,性能测试表明,NSDateFormatter的性能瓶颈是由于NSDate格式到NSString格式的转化,所以把NSDateFormatter创建单例意义不大.推荐的做法是,把最常用到的日期格式做缓存. </p>
 <pre><code>static NSDateFormatter *cachedDateFormatter = nil; 
 + (NSDateFormatter *)cachedDateFormatter { 
@@ -97,23 +97,23 @@
         [dateFormatter setDateFormat: @“YYYY-MM-dd HH:mm:ss”]; 
             } 
    return dateFormatter; 
-} </code></pre><p>##2.不要频繁的刷新页面</p>
+} </code></pre><p>##不要频繁的刷新页面</p>
 <p>能刷新1行cell最好只刷新一行,尽量不要使用reloadData. </p>
-<p>##3.选择正确的集合 </p>
+<p>##选择正确的集合 </p>
 <p>NSArray,使用index来查找很快(插入和删除很慢)<br>字典,使用键来查找很快<br>NSSets,是无序的,用键查找很快,插入/删除很快        </p>
-<p>##4.少用运算获得圆角</p>
+<p>##少用运算获得圆角</p>
 <p>不论view.maskToBounds还是layer.clipToBounds都会有很大的资源开销,必须要用圆角的话,不如把图片本身就做成圆角 </p>
-<p>##5.懒加载,不要一次性创建所有的subview,而是需要时才创建.</p>
-<p>##6.重用 </p>
+<p>##懒加载,不要一次性创建所有的subview,而是需要时才创建.</p>
+<p>##重用 </p>
 <p>可以模仿UITableView和UICollectionView,不要一次性创建所有的subview,而是需要时才创建.完成了使命,把他放入到一个可重用集合中 </p>
-<p>##6.图片处理 </p>
+<p>##图片处理 </p>
 <p>图片与imageView相同大小,避免多余运算<br>可以使用整副的图片,增加应用体积,但是节省CPU<br>可调大小的图片,可以省去一些不必要的空间<br>CALayer,CoreGraphics,甚至OpenGL来绘制,消耗CPU<br>cache,cache,cache(缓存所有需要的)<br>服务器相应结果的缓存(图片)<br>复杂计算结果的缓存(UITableView的行高)<br>尽量少用透明或半透明,会产生额外的运算.  使用ARC减少内存失误,dealloc需要重写并对属性置为nil  避免庞大的xib,storyBoard,尽量使用纯代码开发 </p>
-<p>##7.CPU层面<br> Timer的时间间隔不宜太短,满足需求即可  线程适量,不宜过多,不要阻塞主线程  优化算法,减少循环次数  定位和蓝牙按需取用,定位之后要关闭或降低定位频率 </p>
+<p>##CPU层面<br> Timer的时间间隔不宜太短,满足需求即可  线程适量,不宜过多,不要阻塞主线程  优化算法,减少循环次数  定位和蓝牙按需取用,定位之后要关闭或降低定位频率 </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/16/%E8%80%97%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" data-id="ckbht8u690000pafc9amp9lav" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/06/16/%E8%80%97%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" data-id="ckbhtbbvc0000qufc3sje7rtl" class="article-share-link">Share</a>
       
       
     </footer>
