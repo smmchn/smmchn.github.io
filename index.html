@@ -88,7 +88,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##1.合理使用NSDateFormatter 和 NSCalendar</p>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">##1.合理使用NSDateFormatter 和 NSCalendar</span><br></pre></td></tr></table></figure>
 <p>这种高开销对象,性能测试表明,NSDateFormatter的性能瓶颈是由于NSDate格式到NSString格式的转化,所以把NSDateFormatter创建单例意义不大.推荐的做法是,把最常用到的日期格式做缓存. </p>
 <pre><code>static NSDateFormatter *cachedDateFormatter = nil; 
 + (NSDateFormatter *)cachedDateFormatter { 
@@ -113,7 +113,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/16/%E8%80%97%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" data-id="ckbht4wo70000lwfc9oubgu7v" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/06/16/%E8%80%97%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" data-id="ckbht8u690000pafc9amp9lav" class="article-share-link">Share</a>
       
       
     </footer>
