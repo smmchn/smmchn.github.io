@@ -90,9 +90,7 @@
 
 <p>下面简单的写了一下用法:</p>
 <p>#JS和OC的交互</p>
-<h3 id="JS调用OC"><a href="#JS调用OC" class="headerlink" title="JS调用OC"></a>JS调用OC</h3><blockquote>
-<p>这个实现主要是依靠WKScriptMessageHandler协议类和WKUserContentController两个类：WKUserContentController对象负责注册JS方法，设置处理接收JS方法的代理，代理遵守WKScriptMessageHandler，实现捕捉到JS消息的回调方法，详情可以看第一步中对这两个类的介绍。</p>
-</blockquote>
+<h3 id="JS调用OC"><a href="#JS调用OC" class="headerlink" title="JS调用OC"></a>JS调用OC</h3><p>这个实现主要是依靠WKScriptMessageHandler协议类和WKUserContentController两个类：WKUserContentController对象负责注册JS方法，设置处理接收JS方法的代理，代理遵守WKScriptMessageHandler，实现捕捉到JS消息的回调方法，详情可以看第一步中对这两个类的介绍。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;这个类主要用来做native与JavaScript的交互管理</span><br><span class="line">WKUserContentController * wkUController &#x3D; [[WKUserContentController alloc] init];</span><br><span class="line">&#x2F;&#x2F;注册一个name为jsToOcNoPrams的js方法，设置处理接收JS方法的代理</span><br><span class="line">[wkUController addScriptMessageHandler:self  name:@&quot;jsToOcNoPrams&quot;];</span><br><span class="line">[wkUController addScriptMessageHandler:self  name:@&quot;jsToOcWithPrams&quot;];</span><br><span class="line">config.userContentController &#x3D; wkUController;</span><br><span class="line"></span><br><span class="line">注意：遵守WKScriptMessageHandler协议，代理是由WKUserContentControl设置</span><br><span class="line">&#x2F;&#x2F;通过接收JS传出消息的name进行捕捉的回调方法  js调OC</span><br><span class="line">- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message&#123;</span><br><span class="line">NSLog(@&quot;name:%@\\\\n body:%@\\\\n frameInfo:%@\\\\n&quot;,message.name,message.body,message.frameInfo);</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;根据name移除所注入的scriptMessageHandler</span><br><span class="line">- (void)removeScriptMessageHandlerForName:(NSString *)name;</span><br><span class="line">&#x2F;&#x2F;移除所有脚本</span><br><span class="line">- (void)removeAllUserScripts;</span><br></pre></td></tr></table></figure>
 <p>JS代码实现如下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">window.webkit.messageHandlers.&lt;name&gt;.postMessage(&lt;messageBody&gt;) </span><br><span class="line">name: OC端与JS端共同定义的方法名称</span><br><span class="line">messageBody: 返回给OC的内容, 可以为字典和数组等,如果为空的时候,最好定一个空的对象,不要什么也不加,可能会造成OC端无法响应.</span><br></pre></td></tr></table></figure>
@@ -104,7 +102,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/18/OC%E4%B8%8EJS%E4%BA%A4%E4%BA%92/" data-id="ckbkjaozr00004tfc822b3o02" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/06/18/OC%E4%B8%8EJS%E4%BA%A4%E4%BA%92/" data-id="ckbkjckkq00016pfc66x8dm6w" class="article-share-link">Share</a>
       
       
     </footer>
@@ -154,7 +152,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/17/iOS-NSFileHandle-%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95%E4%BB%8B%E7%BB%8D/" data-id="ckbkjaozz00024tfcd8lr3xbi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/06/17/iOS-NSFileHandle-%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95%E4%BB%8B%E7%BB%8D/" data-id="ckbkjckkk00006pfc56pwd2el" class="article-share-link">Share</a>
       
       
     </footer>
@@ -215,7 +213,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/16/%E8%80%97%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" data-id="ckbkjaozy00014tfc7e560eqx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/06/16/%E8%80%97%E7%94%B5%E9%87%8F%E4%BC%98%E5%8C%96/" data-id="ckbkjckkr00026pfcabjj8i2r" class="article-share-link">Share</a>
       
       
     </footer>
